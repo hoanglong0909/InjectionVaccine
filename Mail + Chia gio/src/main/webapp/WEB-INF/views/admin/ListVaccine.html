@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Done</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script rel="stylesheet" type="text/javascript" src="../template/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../template/css/bootstrap.css">
+    <link href="../../views/template/css/style.css">
+    <script rel="stylesheet" type="text/javascript" src="../../template/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="../../../template/css/cssform.css">
+
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins',sans-serif;
+        }
+        body{
+            min-height: 300vh;
+            width: 100%;
+            background-color: #006699;
+        }
+        .container{
+            width: 1500px;
+            height: 1000px;
+            background-color: #fff;
+            padding: 50px  30px;
+            color: #006699;
+        }
+        h2{
+            margin-bottom: 50px;
+            text-align: center;
+            color: #006699;
+            font-weight: 600;
+            font-size: 30px;
+        }
+        .col-md-4,.col-md-3{
+            float: left ;
+        }
+        .dob {
+            width: 90% !important;
+        }
+        .address{
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-control{
+            margin: 10px 0;
+        }
+        optgroup{
+            font-size: 12px !important;
+        }
+        button{
+            background-color: #006699 !important;
+            color: #fff !important;
+            font-weight: 500 !important;
+            font-size: 18px !important;
+            margin-top: 20px ;
+            border: none !important;
+            outline: none;
+        }
+        input[type=text]:focus,select:focus, input[type=password]:focus {
+            box-shadow: 0 0 5px rgba(81, 203, 238, 1) !important;
+            border: 1px solid rgba(81, 203, 238, 1) !important;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>List Customer Done</h1>
+    <table id="vaccineTable" class="myTable table table-hover" border="1">
+        <thead>
+        <tr>
+            <th>Số thứ tự</th>
+            <th>FullName</th>
+            <th>Số CMND</th>
+            <th>Phone</th>
+            <th>Date Vaccination</th>
+            <th>Time Vaccination</th>
+            <th>Check </th>
+            <th>Check </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <th:block th:each="employee : ${userList}">
+            <tr>
+                <th scope="row" th:text="${employee.id}"></th>
+                <td th:text="${employee.userName}"></td>
+                <td th:text="${employee.CMND}"></td>
+                <td th:text="${employee.phoneNumber}"></td>
+                <td th:text="${employee.DateVaccine}"></td>
+                <td th:text="${employee.TimeVaccine}"></td>
+                <td><a th:href="@{/vaccine/check/__${employee.id}__}"><button>check</button></a></td>
+                <td><a th:href="@{/vaccine/unchecked/__${employee.id}__}"><button>unchecked</button></a></td>
+            </tr>
+        </th:block>
+
+        </tbody>
+    </table>
+</div>
+<script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#vaccineTable').DataTable();
+    } );
+</script>
+
+</body>
+</html>
